@@ -1,0 +1,66 @@
+--- task 17 ---
+ mu    var_meas  mu+sr^2  SNR_meas  SNR_theory  sqrt(mu)
+    5     20.89       21     1.090       1.091     2.236
+   50     65.63       66     6.172       6.155     7.071
+  500    513.96      516    22.052      22.011    22.361
+ 5000   4997.95     5016    70.723      70.598    70.711
+--- task 18 ---
+mean_DN = [10.0, 25.0, 50.0, 100.0, 200.0, 400.0, 799.9]
+var_DN  = [7.3, 14.9, 27.1, 51.7, 102.1, 205.2, 405.4]
+estimated gain = 0.5049 DN/e (true 0.5), read noise = 2.73 e (true 3.0), electrons at 4095 DN = 8110 e
+--- task 19 ---
+original: f=0.3125 A=100.00;  slicing ::4: f=0.2500 A=100.00;  INTER_AREA: f=0.2500 A=21.26 (theory 21.26)
+cos(2pi*0.7n) == cos(2pi*0.3n) on samples: True
+--- task 20 ---
+measured fraction = 0.3333;  PSNR BayerBG2RGB = 30.57 dB, BayerRG2RGB (wrong) = 12.44 dB, own bilinear = 30.60 dB
+max |own - OpenCV| (interior) = 1
+worst pixel (y,x)=(511,121) error sum = 342
+--- task 21 ---
+ n   q  var(e)   q^2/12   mean(e)  PSNR   6.02n+10.76
+ 1 128   931.88  1365.33   17.24  17.23  16.78
+ 2  64   211.72   341.33    8.39  23.63  22.80
+ 3  32    87.64    85.33    0.24  28.70  28.82
+ 4  16    20.58    21.33    0.43  34.96  34.84
+ 5   8     5.21     5.33    0.44  40.81  40.86
+ 6   4     1.25     1.33    0.51  46.33  46.88
+ 7   2     0.25     0.33    0.50  51.11  52.90
+--- task 22 ---
+round-trip 0..255 max error = 0
+codes for L in [0,0.1]: linear 27, sRGB 90 (x3.33)
+2x downscale of 0/255 checker: naive 127.50, gamma-correct 187.52
+--- task 23 ---
+shape (512, 512, 3) strides (1536, 3, 1); offset[100,200,1] = 154201, check True
+CHW strides (1, 1536, 3), shares_memory True, C_CONTIGUOUS False; float32 strides (6144, 12, 4), nbytes 786432 -> 3145728
+torch tensor shape (3, 512, 512) stride (262144, 512, 1); 10000 x 224x224x3: uint8 1.505 GB, float32 6.021 GB
+--- task 24 ---
+numpy a+b [14, 35, 72], cv2.add [255, 35, 255], numpy a-b [190, 251, 184], cv2.subtract [190, 0, 0]
+x1.8: >255 count 351706, mean orig 114.60, wrap 92.03, clip 164.12
+x0.7: exact mean 90.3425, astype 89.8793, round 90.3449
+--- task 25 ---
+RGB(200, 100, 50): own YCrCb=(124.20,182.05,86.15) cv2=[124, 182, 86]; own HSV=(20.00,0.7500,200) cv2=[10, 191, 200]
+RGB(50, 120, 200): own YCrCb=(108.19,86.51,179.78) cv2=[108, 87, 180]; own HSV=(212.00,0.7500,200) cv2=[106, 191, 200]
+round-trip uint8: YCrCb max 1 mean 0.330; HSV max 4 mean 0.349; Lab max 5 mean 0.417
+--- task 26 ---
+red pixels 64782, components 11, largest area 54064 bbox (x,y,w,h)=(0,118,251,394)
+hue of red pixels: naive mean 66.44 deg, circular mean 10.62 deg
+--- task 27 ---
+raw 786432 B; PNG 464915 B (x1.69), lossless True
+JPEG q=95:  99308 B  x  7.9  PSNR 38.28 dB  SSIM(gray) 0.9900
+JPEG q=80:  45960 B  x 17.1  PSNR 34.67 dB  SSIM(gray) 0.9742
+JPEG q=50:  27748 B  x 28.3  PSNR 32.06 dB  SSIM(gray) 0.9551
+JPEG q=25:  18876 B  x 41.7  PSNR 30.00 dB  SSIM(gray) 0.9295
+JPEG q=10:  11564 B  x 68.0  PSNR 26.84 dB  SSIM(gray) 0.8607
+--- task 28 ---
+.png: changed labels 0.00%, unique values [0, 1, 2, 3, 4]
+.jpg: changed labels 12.52%, unique values [0, 1, 2, 3, 4, 5, 6]
+resize: INTER_NEAREST values [0, 1, 2, 3, 4], INTER_LINEAR != NEAREST pixels 10.13%
+--- task 29 ---
+subsample chroma (Cr,Cb): PSNR 40.35 dB
+subsample luma (Y): PSNR 29.30 dB
+frame 1920x1080 bytes: 4:4:4 6220800, 4:2:0 3110400
+--- task 30 ---
+D orthonormal True; |own-cv2.dct| = <1e-9; F(0,0) of const 150 = 176.00
+scale 0.5: zero coeffs 81.21%  PSNR 35.12 dB  SSIM 0.9489
+scale 1.0: zero coeffs 87.96%  PSNR 32.60 dB  SSIM 0.9140
+scale 2.0: zero coeffs 92.52%  PSNR 30.81 dB  SSIM 0.8720
+scale 4.0: zero coeffs 95.59%  PSNR 29.01 dB  SSIM 0.8071
